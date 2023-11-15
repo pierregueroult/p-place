@@ -15,7 +15,7 @@ model User {
   email    String   @unique
   username String   @unique
   password String
-  token    String   @unique @default(cuid())
+  token    String   @unique @default("")
   verified Boolean  @default(false)
 }
 

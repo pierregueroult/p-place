@@ -27,8 +27,8 @@ const colors = [
 
 const websocketUrl =
   process.env.NODE_ENV === "production"
-    ? "https://placewebsocket.pierregueroult.dev"
-    : "http://localhost:4000";
+    ? "https://p-place-websocket.onrender.com:4000"
+    : "https://p-place-websocket.onrender.com:4000";
 
 export default function Map({ initialMapData }: MapProps) {
   const [mapData, setMapData] = useState<MapDataType>(initialMapData);
@@ -46,7 +46,7 @@ export default function Map({ initialMapData }: MapProps) {
   };
 
   useEffect(() => {
-    const socket = io(websocketUrl, { autoConnect: false });
+    const socket = io(websocketUrl);
 
     socket.connect();
 
