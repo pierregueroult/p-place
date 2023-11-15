@@ -26,8 +26,6 @@ export default function AuthLoginForm() {
     const data = new FormData(formRef.current);
     setLoading(true);
     try {
-      console.log("data", data.get("name"), data.get("password"));
-
       const res = await signIn("credentials", {
         callbackUrl: "/",
         username: data.get("name") as string,
