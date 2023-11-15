@@ -25,10 +25,7 @@ const colors = [
   "FFFFFF", // white
 ];
 
-const websocketUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://p-place-websocket.onrender.com:4000"
-    : "https://p-place-websocket.onrender.com:4000";
+const websocketUrl = "https://placewebsocket.pierregueroult.dev";
 
 export default function Map({ initialMapData }: MapProps) {
   const [mapData, setMapData] = useState<MapDataType>(initialMapData);
