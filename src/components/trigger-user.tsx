@@ -6,13 +6,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export default function TriggerUser() {
-  const { data: session, status, update } = useSession();
+  const { data: session } = useSession();
 
   return (
-    <DropdownMenu onOpenChange={() => update()}>
+    <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           <User className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
@@ -20,7 +19,7 @@ export default function TriggerUser() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
-        {status === "unauthenticated" ? (
+        {!session ? (
           <>
             <DropdownMenuItem>
               <Link href="/auth/login" className="text-sm">
@@ -36,8 +35,13 @@ export default function TriggerUser() {
         ) : (
           <>
             <DropdownMenuItem>
+              <p>
+                Bienvue <strong>{session?.user?.email}</strong>
+              </p>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
               <Link href="/user" className="text-sm">
-                Mon compte
+                &gt; Mon compte
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
@@ -49,7 +53,7 @@ export default function TriggerUser() {
                   })
                 }
               >
-                Se déconnecter
+                &gt; Se déconnecter
               </p>
             </DropdownMenuItem>
           </>
