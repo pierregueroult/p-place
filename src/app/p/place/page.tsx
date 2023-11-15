@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth/next";
-import { options } from "@/lib/nextauthoptions";
+import { options } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Map from "@/components/map";
 import prisma from "@/lib/prisma";

@@ -1,8 +1,8 @@
-import { NextAuthOptions } from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 
-export const options: NextAuthOptions = {
+export const options = {
   providers: [
     Credentials({
       type: "credentials",
@@ -45,4 +45,4 @@ export const options: NextAuthOptions = {
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",
   },
-};
+} satisfies NextAuthOptions;

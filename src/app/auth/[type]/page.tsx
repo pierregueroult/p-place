@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AuthLoginForm from "@/components/login-form";
 import AuthRegisterForm from "@/components/register-form";
 import { getServerSession } from "next-auth/next";
-import { options } from "@/lib/nextauthoptions";
+import { options } from "@/lib/auth";
 import { redirect } from "next/navigation";
 
 interface AuthPageProps {

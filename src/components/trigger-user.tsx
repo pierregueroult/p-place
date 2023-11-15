@@ -6,11 +6,14 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function TriggerUser() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
-  const isSignedIn = !!session?.user;
+  useEffect(() => {
+    console.log(session);
+  }, [session]);
 
   return (
     <DropdownMenu>
@@ -21,7 +24,20 @@ export default function TriggerUser() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center">
-        {isSignedIn ? (
+        {status === "unauthenticated" ? (
+          <>
+            <DropdownMenuItem>
+              <Link href="/auth/login" className="text-sm">
+                Se connecter
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/auth/register" className="text-sm">
+                Créer un compte
+              </Link>
+            </DropdownMenuItem>
+          </>
+        ) : (
           <>
             <DropdownMenuItem>
               <Link href="/user" className="text-sm">
@@ -39,19 +55,6 @@ export default function TriggerUser() {
               >
                 Se déconnecter
               </p>
-            </DropdownMenuItem>
-          </>
-        ) : (
-          <>
-            <DropdownMenuItem>
-              <Link href="/auth/login" className="text-sm">
-                Se connecter
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/auth/register" className="text-sm">
-                Créer un compte
-              </Link>
             </DropdownMenuItem>
           </>
         )}
