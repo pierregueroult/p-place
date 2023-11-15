@@ -21,17 +21,17 @@ export const options: NextAuthOptions = {
       },
       // @ts-ignore
       async authorize(credentials, req) {
-        console.log("credentials", credentials);
+        if (!credentials) return null;
 
         const user = await prisma.user.findUnique({
           where: {
-            username: credentials!.username,
+            username: credentials.username,
           },
         });
 
         if (!user) return null;
 
-        if (user.password === credentials!.password) {
+        if (user.password === credentials.password) {
           return user;
         } else {
           return null;
