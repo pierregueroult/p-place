@@ -11,12 +11,8 @@ import { useEffect } from "react";
 export default function TriggerUser() {
   const { data: session, status, update } = useSession();
 
-  useEffect(() => {
-    update();
-  }, [status, update]);
-
   return (
-    <DropdownMenu>
+    <DropdownMenu onOpenChange={() => update()}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
           <User className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
