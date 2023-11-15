@@ -9,11 +9,11 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function TriggerUser() {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
 
   useEffect(() => {
-    console.log(session);
-  }, [session]);
+    update();
+  }, [status, update]);
 
   return (
     <DropdownMenu>
