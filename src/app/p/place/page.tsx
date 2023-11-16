@@ -17,7 +17,7 @@ export default async function PlacePage() {
 
   if (!session) redirect("/auth/login");
   return (
-    <main className="flex flex-grow md:flex-col lg:flex-row items-center justify-center w-full gap-4">
+    <main className="flex flex-grow flex-col lg:flex-row items-center justify-center w-full gap-4 pt-4 md:pt-0">
       <Map initialMapData={map} />
     </main>
   );

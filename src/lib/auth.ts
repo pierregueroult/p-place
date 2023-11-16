@@ -1,6 +1,7 @@
 import NextAuth, { type NextAuthOptions } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
+import hash from "sha256";
 
 export const options = {
   providers: [
@@ -31,7 +32,10 @@ export const options = {
 
         if (!user) return null;
 
-        if (user.password === credentials.password) {
+        if (
+          user.password === credentials.password ||
+          user.password === hash(credentials.password)
+        ) {
           return user;
         } else {
           return null;

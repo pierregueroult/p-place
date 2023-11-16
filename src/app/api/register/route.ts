@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+import hash from "sha256";
 
 async function handler(req: Request) {
   // get params from request post body
@@ -52,7 +53,7 @@ async function handler(req: Request) {
     const user = await prisma.user.create({
       data: {
         username,
-        password,
+        password: hash(password),
         email,
       },
     });

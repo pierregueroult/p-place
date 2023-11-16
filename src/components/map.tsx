@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import UpdatePixel from "./update-pixel";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 type MapDataType = {
   coords: number[];
@@ -114,8 +115,6 @@ export default function Map({ initialMapData }: MapProps) {
         colorHex: map.colorHex,
       }));
 
-      console.log(data, newData);
-
       setMapData(newData);
     });
 
@@ -139,9 +138,9 @@ export default function Map({ initialMapData }: MapProps) {
             style={{
               backgroundColor: "#" + colorHex,
             }}
-            className={`w-2 h-2 hover:opacity-50 transition-opacity duration-300 ${
+            className={`w-1 h-1 md:w-2 md:h-2 hover:opacity-50 transition-opacity duration-300 ${
               selectedPixel[0] === coords[0] && selectedPixel[1] === coords[1]
-                ? "border-2 border-black"
+                ? "border md:border-2 border-black"
                 : ""
             }`}
             data-number={i}
@@ -157,9 +156,12 @@ export default function Map({ initialMapData }: MapProps) {
             <UpdatePixel colors={colors} coords={selectedPixel} />
           </>
         ) : (
-          <p className="w-[300px] text-center text-white text-xl">
-            Cliquez sur un pixel pour le selectionner
-          </p>
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Modifier un pixel</CardTitle>
+              <CardDescription>Choisissez un pixel à modifier</CardDescription>
+            </CardHeader>
+          </Card>
         )}
       </section>
     </>
