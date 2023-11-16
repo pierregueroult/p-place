@@ -8,26 +8,17 @@ type MapDataType = {
   colorHex: string;
 }[];
 
+type RawDataType = {
+  _id: string;
+  x: number;
+  y: number;
+  updatedAt: string;
+  colorHex: string;
+}[];
+
 interface MapProps {
   initialMapData: MapDataType;
 }
-
-// FFFFFF
-// E4E4E4
-// 888888
-// 222222
-// FFA7D1
-// E50000
-// E59500
-// A06A42
-// E5D900
-// 94E044
-// 02BE01
-// 00D3DD
-// 0083C7
-// 0000EA
-// CF6EE4
-// 820080
 
 const colors = [
   {
@@ -96,15 +87,14 @@ const colors = [
   },
 ];
 
-const websocketUrl = "https://placewebsocket.pierregueroult.dev";
+const websocketUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://placewebsocket.pierregueroult.dev"
+    : "http://localhost:4000";
 
 export default function Map({ initialMapData }: MapProps) {
   const [mapData, setMapData] = useState<MapDataType>(initialMapData);
   const [selectedPixel, setSelectedPixel] = useState<number[]>([-1, -1]);
-
-  function updateMapData(newMapData: MapDataType) {
-    setMapData(newMapData);
-  }
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const target = e.target as HTMLDivElement;
@@ -118,8 +108,15 @@ export default function Map({ initialMapData }: MapProps) {
 
     socket.connect();
 
-    socket.on("update", (data: MapDataType) => {
-      updateMapData(data);
+    socket.on("update", (data: RawDataType) => {
+      const newData: MapDataType = data.map((map) => ({
+        coords: [map.x, map.y],
+        colorHex: map.colorHex,
+      }));
+
+      console.log(data, newData);
+
+      setMapData(newData);
     });
 
     return () => {
@@ -154,7 +151,7 @@ export default function Map({ initialMapData }: MapProps) {
           />
         ))}
       </section>
-      <section className="w-[400px] flex flex-col items-center justify-center">
+      <section className="lg:w-[400px] flex flex-col items-center justify-center w-11/12">
         {selectedPixel[0] !== -1 && selectedPixel[1] !== -1 ? (
           <>
             <UpdatePixel colors={colors} coords={selectedPixel} />

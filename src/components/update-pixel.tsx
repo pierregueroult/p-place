@@ -71,7 +71,7 @@ export default function UpdatePixel({ colors, coords }: updatePixelProps) {
   }
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-[360px]">
       <CardHeader>
         <CardTitle>Modifier un pixel</CardTitle>
         <CardDescription>
