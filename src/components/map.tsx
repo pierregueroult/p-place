@@ -12,17 +12,88 @@ interface MapProps {
   initialMapData: MapDataType;
 }
 
+// FFFFFF
+// E4E4E4
+// 888888
+// 222222
+// FFA7D1
+// E50000
+// E59500
+// A06A42
+// E5D900
+// 94E044
+// 02BE01
+// 00D3DD
+// 0083C7
+// 0000EA
+// CF6EE4
+// 820080
+
 const colors = [
-  "FF0000", // red
-  "FFA500", // orange
-  "FFFF00", // yellow
-  "008000", // green
-  "0000FF", // blue
-  "4B0082", // indigo
-  "EE82EE", // violet
-  "000000", // black
-  "808080", // gray
-  "FFFFFF", // white
+  {
+    name: "Blanc",
+    color: "FFFFFF",
+  },
+  {
+    name: "Gris clair",
+    color: "E4E4E4",
+  },
+  {
+    name: "Gris",
+    color: "888888",
+  },
+  {
+    name: "Gris foncé",
+    color: "222222",
+  },
+  {
+    name: "Rose",
+    color: "FFA7D1",
+  },
+  {
+    name: "Rouge",
+    color: "E50000",
+  },
+  {
+    name: "Orange",
+    color: "E59500",
+  },
+  {
+    name: "Marron",
+    color: "A06A42",
+  },
+  {
+    name: "Jaune",
+    color: "E5D900",
+  },
+  {
+    name: "Vert Clair",
+    color: "94E044",
+  },
+  {
+    name: "Vert",
+    color: "02BE01",
+  },
+  {
+    name: "Turquoise",
+    color: "00D3DD",
+  },
+  {
+    name: "Bleu",
+    color: "0083C7",
+  },
+  {
+    name: "Bleu foncé",
+    color: "0000EA",
+  },
+  {
+    name: "Violet",
+    color: "CF6EE4",
+  },
+  {
+    name: "Violet foncé",
+    color: "820080",
+  },
 ];
 
 const websocketUrl = "https://placewebsocket.pierregueroult.dev";

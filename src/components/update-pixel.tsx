@@ -14,7 +14,10 @@ import { useState, useRef } from "react";
 import { useToast } from "./ui/use-toast";
 
 interface updatePixelProps {
-  colors: string[];
+  colors: {
+    name: string;
+    color: string;
+  }[];
   coords: number[];
 }
 
@@ -89,14 +92,21 @@ export default function UpdatePixel({ colors, coords }: updatePixelProps) {
             <div className="flex flex-col space-y-1 5">
               <Label htmlFor="color">Couleur :</Label>
               <RadioGroup
-                defaultValue={colors[0]}
+                defaultValue={colors[0].color}
                 className="grid grid-cols-2"
                 name="color"
               >
                 {colors.map((color, i) => (
                   <div className="flex items-center space-x-2" key={i}>
-                    <RadioGroupItem value={color} id={color} />
-                    <Label htmlFor={color}>{color}</Label>
+                    <RadioGroupItem value={color.color} id={color.name} />
+                    <Label htmlFor={color.name} className="flex items-center">
+                      <div
+                        className="w-4 h-4 mr-2 rounded-full"
+                        style={{ backgroundColor: `#${color.color}` }}
+                        role="none"
+                      ></div>
+                      {color.name}
+                    </Label>
                   </div>
                 ))}
               </RadioGroup>
