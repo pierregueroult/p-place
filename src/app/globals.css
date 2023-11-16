@@ -83,3 +83,11 @@ html,
 body {
   overflow-x: hidden;
 }
+
+.gradient-main {
+  background: radial-gradient(
+    100% 100% at 50% 0%,
+    rgba(30, 64, 175, 0.3) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+}

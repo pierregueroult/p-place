@@ -35,25 +35,13 @@ export default function TriggerUser() {
         ) : (
           <>
             <DropdownMenuItem>
-              <p>
-                Bienvue <strong>{session?.user?.email}</strong>
-              </p>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
               <Link href="/user" className="text-sm">
-                &gt; Mon compte
+                Mon compte
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <p
-                className="text-sm"
-                onClick={() =>
-                  signOut({
-                    callbackUrl: "/",
-                  })
-                }
-              >
-                &gt; Se déconnecter
+              <p className="text-sm cursor-pointer" onClick={() => signOut()}>
+                Se déconnecter
               </p>
             </DropdownMenuItem>
           </>

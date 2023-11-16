@@ -33,12 +33,9 @@ export default function UpdatePixel({ colors, coords }: updatePixelProps) {
 
   async function handleClick() {
     var lastvote = localStorage.getItem("lastvote");
-    // if lastvote does not exist or is more than 5 minutes ago
+    // if lastvote does not exist or is more than 1 minute old
 
-    if (
-      !lastvote ||
-      (new Date().getTime() - new Date(lastvote).getTime()) / 1000 > 300
-    ) {
+    if (!lastvote || Date.now() - parseInt(lastvote) > 60 * 1000) {
       setLoading(true);
       const form = new FormData(formRef.current!);
       const color = Object.fromEntries(form.entries()).color as string;
@@ -57,12 +54,14 @@ export default function UpdatePixel({ colors, coords }: updatePixelProps) {
           description:
             "Pixel modifié, le changement sera visible dans quelques secondes",
         });
-        localStorage.setItem("lastvote", new Date().toString());
+        localStorage.setItem("lastvote", Date.now().toString());
       }
     } else {
       toast({
         title: "Erreur !",
-        description: "Vous devez attendre 5 minutes entre chaque vote",
+        description: `Vous devez attendre 1 minutes entre chaque vote. (encore ${
+          60 - Math.floor((Date.now() - parseInt(lastvote)) / 1000)
+        } secondes)`,
         variant: "destructive",
       });
     }
