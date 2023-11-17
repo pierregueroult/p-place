@@ -1,6 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 async function handler(req: NextRequest) {
   const messages = await prisma.message.findMany({
     take: 25,
