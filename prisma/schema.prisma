@@ -15,7 +15,7 @@ model User {
   email    String   @unique
   username String   @unique
   password String
-  token    String   @unique @default("")
+  token    String   @default("fff")
   verified Boolean  @default(false)
 }
 
@@ -25,4 +25,11 @@ model Map {
   y         Int      @default(0)
   x         Int      @default(0)
   updatedAt DateTime @updatedAt 
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  createdAt DateTime @default(now())
+  username  String
 }

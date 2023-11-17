@@ -24,7 +24,7 @@ export default function IsOnline() {
   }, []);
 
   return loading ? (
-    <>Chargement ... </>
+    <> Le Serveur démarre </>
   ) : online ? (
     <>Le serveur est en ligne</>
   ) : (

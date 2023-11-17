@@ -19,9 +19,14 @@ interface updatePixelProps {
     color: string;
   }[];
   coords: number[];
+  setSelectedPixel: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-export default function UpdatePixel({ colors, coords }: updatePixelProps) {
+export default function UpdatePixel({
+  colors,
+  coords,
+  setSelectedPixel,
+}: updatePixelProps) {
   const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
@@ -114,7 +119,16 @@ export default function UpdatePixel({ colors, coords }: updatePixelProps) {
           </div>
         </form>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="grid grid-cols-2 gap-4 w-full">
+        <Button
+          variant={"outline"}
+          onClick={(e) => {
+            e.preventDefault();
+            setSelectedPixel([-1, -1]);
+          }}
+        >
+          Annuler
+        </Button>
         <Button
           type="submit"
           className="w-full"

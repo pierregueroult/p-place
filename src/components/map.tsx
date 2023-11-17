@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 import UpdatePixel from "./update-pixel";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import DesktopOnly from "./desktop-only";
+import CguAccepted from "./cgu-accepted";
+import Chat from "./chat";
 
 type MapDataType = {
   coords: number[];
@@ -150,20 +153,33 @@ export default function Map({ initialMapData }: MapProps) {
           />
         ))}
       </section>
-      <section className="lg:w-[400px] flex flex-col items-center justify-center w-11/12">
-        {selectedPixel[0] !== -1 && selectedPixel[1] !== -1 ? (
-          <>
-            <UpdatePixel colors={colors} coords={selectedPixel} />
-          </>
-        ) : (
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle>Modifier un pixel</CardTitle>
-              <CardDescription>Choisissez un pixel à modifier</CardDescription>
-            </CardHeader>
-          </Card>
-        )}
-      </section>
+      <aside className="flex flex-row lg:flex-col gap-4 items-center lg:items-start">
+        <section className="lg:w-[400px] flex flex-col items-center justify-center w-11/12 md:w-1/2">
+          {selectedPixel[0] !== -1 && selectedPixel[1] !== -1 ? (
+            <UpdatePixel
+              colors={colors}
+              coords={selectedPixel}
+              setSelectedPixel={setSelectedPixel}
+            />
+          ) : (
+            <Card className="w-full">
+              <CardHeader>
+                <CardTitle>Modifier un pixel</CardTitle>
+                <CardDescription>
+                  Choisissez un pixel à modifier
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          )}
+        </section>
+        <section className="lg:w-[400px] flex-grow">
+          <DesktopOnly>
+            <CguAccepted>
+              <Chat />
+            </CguAccepted>
+          </DesktopOnly>
+        </section>
+      </aside>
     </>
   );
 }
