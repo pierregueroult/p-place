@@ -12,6 +12,7 @@ import {
 } from "./ui/card";
 import { useState, useRef } from "react";
 import { useToast } from "./ui/use-toast";
+import { useSession } from "next-auth/react";
 
 interface updatePixelProps {
   colors: {
@@ -30,6 +31,7 @@ export default function UpdatePixel({
   const [loading, setLoading] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const { toast } = useToast();
+  const { data: session } = useSession();
 
   async function updatePixel(x: number, y: number, color: string) {
     const res = await fetch("/api/pixel", {
@@ -62,6 +64,7 @@ export default function UpdatePixel({
           description:
             "Pixel modifié, le changement sera visible dans quelques secondes",
         });
+        if (session?.user?.email === "pierregueroult2022@gmail.com") return;
         localStorage.setItem("lastvote", Date.now().toString());
       }
     } else {
