@@ -5,6 +5,35 @@ import Providers from "@/components/providers";
 
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { Metadata } from "next";
+
+export const meta: Metadata = {
+  title: {
+    template: "%s | p/place",
+    default: "Bienvenue sur p/place",
+  },
+  description:
+    "Le r/place par pierre guéroult, codé en 3 jours pour le plaisir",
+  metadataBase: new URL("https://place.pierregueroult.dev"),
+  authors: [
+    {
+      name: "Pierre Guéroult",
+      url: "https://pierregueroult.dev",
+    },
+  ],
+  generator: "next.js",
+  robots: "noindex, nofollow",
+  keywords: [
+    "place",
+    "pierre",
+    "guéroult",
+    "pixel",
+    "map",
+    "r/place",
+    "reddit",
+    "clone",
+  ],
+};
 
 const fontSans = FontSans({
   display: "swap",

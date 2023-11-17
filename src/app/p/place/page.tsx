@@ -3,6 +3,11 @@ import { options } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Map from "@/components/map";
 import prisma from "@/lib/prisma";
+import { Metadata } from "next";
+
+export const meta: Metadata = {
+  title: "La carte",
+};
 
 export default async function PlacePage() {
   const session = await getServerSession({ ...options, req: null });
