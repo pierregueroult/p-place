@@ -5,7 +5,7 @@ import Map from "@/components/map";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: "La carte",
 };
 

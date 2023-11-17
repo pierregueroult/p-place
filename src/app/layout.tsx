@@ -7,7 +7,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { Metadata } from "next";
 
-export const meta: Metadata = {
+export const metadata: Metadata = {
   title: {
     template: "%s | p/place",
     default: "Bienvenue sur p/place",
