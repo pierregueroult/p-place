@@ -126,6 +126,25 @@ export default function Map({ initialMapData }: MapProps) {
     };
   }, []);
 
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "ArrowUp" && selectedPixel[1] > 1)
+        setSelectedPixel((prev) => [prev[0], prev[1] - 1]);
+      if (e.key === "ArrowDown" && selectedPixel[1] < 80)
+        setSelectedPixel((prev) => [prev[0], prev[1] + 1]);
+      if (e.key === "ArrowLeft" && selectedPixel[0] > 1)
+        setSelectedPixel((prev) => [prev[0] - 1, prev[1]]);
+      if (e.key === "ArrowRight" && selectedPixel[0] < 80)
+        setSelectedPixel((prev) => [prev[0] + 1, prev[1]]);
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [selectedPixel]);
+
   return (
     <>
       <section
